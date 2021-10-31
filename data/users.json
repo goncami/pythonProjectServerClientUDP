@@ -2,7 +2,34 @@
     "users": [
         {
             "user": "gon",
-            "password": "1234"
+            "password": "1234",
+            "messages": [
+                {
+                    "usr_src": "gon",
+                    "timestamp": "2021-10-31 23:57:12.907385",
+                    "text": "hola"
+                },
+                {
+                    "usr_src": "gon",
+                    "timestamp": "2021-11-01 00:10:33.775883",
+                    "text": "hola 2"
+                },
+                {
+                    "usr_src": "gon",
+                    "timestamp": "2021-11-01 00:11:45.124363",
+                    "text": "hola 3"
+                },
+                {
+                    "usr_src": "sil",
+                    "timestamp": "2021-11-01 00:13:02.131195",
+                    "text": "Hola desde Sil"
+                }
+            ]
+        },
+        {
+            "user": "sil",
+            "password": "4321",
+            "messages": []
         }
     ]
 }

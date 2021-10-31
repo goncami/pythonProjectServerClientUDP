@@ -7,6 +7,7 @@ bufferSize = 1024
 # Create a UDP socket at client side
 UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 
+
 def register():
     sequence_number = randrange(65536)
     user_name = input("Introduce tu nombre: \n >")
@@ -37,10 +38,10 @@ def put_message():
     user_src = input("Introduce tu nombre: \n >")
     user_password = input("Introduce tu contraseña: \n >")
     user_dst = input("Introduce el usuario destinatario: \n >")
-    msg_dst = input("Introduce el mensaje: \n >")
-    msgFromClient = "PUT$@%{}$@%{}$@%{}".format(
+    text = input("Introduce el mensaje: \n >")
+    msgFromClient = "PUT$@%{}$@%{}$@%{}$@%{}$@%{}".format(
         str(sequence_number),
-        msg_dst,
+        text,
         user_src,
         user_dst,
         user_password
@@ -49,11 +50,10 @@ def put_message():
     UDPClientSocket.sendto(bytesToSend, serverAddressPort)
 
     msgFromServer = UDPClientSocket.recvfrom(bufferSize)
-    deocedMessage = msgFromServer[0].decode()
-    msg = "Message from Server: {}".format(deocedMessage)
-    print(msg)
+    validate_response(msgFromServer, sequence_number)
 
-def main_menu():
+
+def main():
     initial_msg = "Selecciona: \n" \
                   "1 => Registrate\n" \
                   "2 => Enviar mensaje\n" \
@@ -65,15 +65,17 @@ def main_menu():
         entrada = input(initial_msg)
         if entrada == "4":
             print("Adios")
+            UDPClientSocket.close()
             exit = True
         elif entrada == "1":
             register()
         elif entrada == "2":
             put_message()
         elif entrada == "3":
-            #TODO: GET.
+            # TODO: GET.
             print("GET")
         else:
             print("Valor incorrecto, vuelve a intentarlo, gracias.")
 
-main_menu()
+
+main()

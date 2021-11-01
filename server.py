@@ -10,7 +10,7 @@ bufferSize = 1024
 UDPServerSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
 # Bind to address and ip
 UDPServerSocket.bind((localIP, localPort))
-print("UDP server up and listening")
+print(datetime.datetime.now(), "UDP server up and listening")
 
 
 # Logic of practise UD3
@@ -41,7 +41,6 @@ def write_user_into_json(new_data, filename='./data/users.json'):
         json.dump(file_data, file, indent=4)
         file.truncate()
         file.close()
-    print('Usuario registrado con éxito')
 
 
 def write_message_into_user(new_data, usr_dst, filename='./data/users.json'):
@@ -196,8 +195,7 @@ def main():
         bytes_address_pair = UDPServerSocket.recvfrom(bufferSize)
         message = bytes_address_pair[0].decode()
         address = bytes_address_pair[1]
-        client_msg = "Message from Client:{}".format(message)
-        print(client_msg)
+        print(datetime.datetime.now(), "Message from Client:{}".format(message))
         operation = message.split("$@%", 2)[0]
         sequence = message.split("$@%", 2)[1]
 

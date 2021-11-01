@@ -96,7 +96,7 @@ def validate_response(msg_from_server, sequence:str):
 
 def main():
     initial_msg = "Selecciona: \n" \
-                  "1 => Registrate\n" \
+                  "1 => Regístrate\n" \
                   "2 => Enviar mensaje\n" \
                   "3 => Leer mensajes\n" \
                   "4 => Salir\n" \

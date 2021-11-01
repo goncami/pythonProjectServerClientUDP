@@ -29,7 +29,13 @@
         {
             "user": "sil",
             "password": "4321",
-            "messages": []
+            "messages": [
+                {
+                    "usr_src": "gon",
+                    "timestamp": "2021-11-01 12:59:22.383148",
+                    "text": "Hola sil desde gon"
+                }
+            ]
         }
     ]
 }

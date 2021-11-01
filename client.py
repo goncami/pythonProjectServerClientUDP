@@ -66,14 +66,17 @@ def get_messages():
     create_send_data_and_capture_response(msg_from_client, sequence_str)
 
 
+def show_generic_message(decoded_message):
+    print(datetime.datetime.now(), 'Mensaje recibido del servidor: {}'.format(decoded_message.split('$@%')[2]))
+
+
 def validate_response(msg_from_server, sequence:str):
     decoded_message = msg_from_server[0].decode()
     sequence_received = decoded_message.split("$@%", 2)[1]
     operation_received = decoded_message.split("$@%", 1)[0]
-    print(datetime.datetime.now(), '{}'.format(decoded_message.split('$@%')))
     if 'ANS' == operation_received and sequence == sequence_received:
         if len(decoded_message.split('$@%')) >= 6:
-            print('{}'.format(decoded_message.split('$@%')[2]))
+            show_generic_message(decoded_message)
             list_messages = decoded_message.split('$@%')
             count = 0
             while count < 3:
@@ -88,7 +91,7 @@ def validate_response(msg_from_server, sequence:str):
                     list_messages[sub_list_count:sub_list_count + 3][1]
                 ))
         else:
-            print('Mensaje recibido del servidor: {}'.format(decoded_message.split('$@%')[2]))
+            show_generic_message(decoded_message)
 
 
 def main():

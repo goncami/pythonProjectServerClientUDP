@@ -39,6 +39,8 @@ def write_user_into_json(new_data, filename='./data/users.json'):
         file_data["users"].append(new_data)
         file.seek(0)
         json.dump(file_data, file, indent=4)
+        file.truncate()
+        file.close()
     print('Usuario registrado con éxito')
 
 
@@ -51,13 +53,28 @@ def write_message_into_user(new_data, usr_dst, filename='./data/users.json'):
                 break
         file.seek(0)
         json.dump(file_data, file, indent=4)
+        file.truncate()
+        file.close()
 
+
+def clean_user_messages(user_src, filename='./data/users.json'):
+    with open(filename, 'r+') as file:
+        file_data = json.load(file)
+        for elem_data in file_data['users']:
+            if elem_data.get('user') == user_src:
+                elem_data.get('messages').clear()
+                break
+        file.seek(0)
+        json.dump(file_data, file, indent=4)
+        file.truncate()
+        file.close()
 
 def get_user_messages(user, filename='./data/users.json'):
     file = open(filename, 'r+')
     data = json.load(file)
-    messages = list(filter(lambda e: e.get("user") == user, data['users']))[0].get('messages')
+    messages = list(filter(lambda e: e.get('user') == user, data['users']))[0].get('messages')
     file.close()
+    clean_user_messages(user)
     return messages
 
 
